@@ -19,7 +19,7 @@ WORKDIR /cocoapi/PythonAPI
 RUN make install
 
 # Go to Detectron root
-WORKDIR /shared
+WORKDIR /detectron
 
 # Set up Python modules
 RUN make
