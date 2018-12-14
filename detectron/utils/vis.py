@@ -253,7 +253,7 @@ def vis_one_image_opencv(
 def vis_one_image(
         im, im_name, output_dir, boxes, segms=None, keypoints=None, thresh=0.9,
         kp_thresh=2, dpi=200, box_alpha=0.0, dataset=None, show_class=False,
-        ext='pdf', out_when_no_box=False):
+        out_when_no_box=False):
     """Visual debugging of detections."""
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
@@ -298,6 +298,8 @@ def vis_one_image(
             continue
 
         # show box (off by default)
+        print(bbox)
+        print(get_class_string(classes[i], score, dataset))
         ax.add_patch(
             plt.Rectangle((bbox[0], bbox[1]),
                           bbox[2] - bbox[0],
@@ -389,6 +391,6 @@ def vis_one_image(
                     line, color=colors[len(kp_lines) + 1], linewidth=1.0,
                     alpha=0.7)
 
-    output_name = os.path.basename(im_name) + '.' + ext
+    output_name = os.path.basename(im_name);
     fig.savefig(os.path.join(output_dir, '{}'.format(output_name)), dpi=dpi)
     plt.close('all')
